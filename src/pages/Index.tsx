@@ -1,9 +1,7 @@
-
 import { useState } from 'react';
-import { Bell, Filter, Settings } from 'lucide-react';
+import { Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import LeadCard from '@/components/LeadCard';
 import FilterTabs from '@/components/FilterTabs';
 import FilterControls from '@/components/FilterControls';
@@ -24,12 +22,60 @@ const Index = () => {
       allocatedTo: 'Sunil Arjun Natekar',
       isSelfSourced: true,
     },
-    // ... similar mock data entries
+    {
+      id: '290485',
+      name: 'Rahul Kumar',
+      createdOn: '24/04/2024',
+      allocatedOn: '01/08/2024',
+      mobileNo: '9876543210',
+      allocatedBy: 'Amit Shah',
+      allocatedTo: 'Priya Sharma',
+      isSelfSourced: false,
+    },
+    {
+      id: '290486',
+      name: 'Priya Desai',
+      createdOn: '25/04/2024',
+      allocatedOn: '02/08/2024',
+      mobileNo: '9870123456',
+      allocatedBy: 'Rajesh Kumar',
+      allocatedTo: 'Neha Patel',
+      isSelfSourced: true,
+    },
+    {
+      id: '290487',
+      name: 'Sanjay Mehta',
+      createdOn: '26/04/2024',
+      allocatedOn: '03/08/2024',
+      mobileNo: '9876123450',
+      allocatedBy: 'Anita Singh',
+      allocatedTo: 'Vikram Rathod',
+      isSelfSourced: false,
+    },
+    {
+      id: '290488',
+      name: 'Meera Shah',
+      createdOn: '27/04/2024',
+      allocatedOn: '04/08/2024',
+      mobileNo: '9879876543',
+      allocatedBy: 'Ravi Verma',
+      allocatedTo: 'Sneha Kapoor',
+      isSelfSourced: true,
+    },
+    {
+      id: '290489',
+      name: 'Arjun Reddy',
+      createdOn: '28/04/2024',
+      allocatedOn: '05/08/2024',
+      mobileNo: '9876789012',
+      allocatedBy: 'Kiran Rao',
+      allocatedTo: 'Aditya Sharma',
+      isSelfSourced: false,
+    },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-[#003087] text-white p-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Button variant="ghost" className="text-white hover:text-white/90">
@@ -54,19 +100,16 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto py-6 px-4">
         <FilterTabs activeTab={activeTab} onTabChange={setActiveTab} />
         <FilterControls />
         
-        {/* Lead Cards */}
-        <div className="mt-6 space-y-4">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
           {mockLeads.map((lead) => (
             <LeadCard key={lead.id} lead={lead} />
           ))}
         </div>
 
-        {/* Pagination */}
         <Pagination
           currentPage={currentPage}
           totalPages={4}
