@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -76,25 +77,35 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-[#003087] text-white p-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" className="text-white hover:text-white/90">
-            <span className="mr-2">←</span> Leads
-          </Button>
-          <h1 className="text-xl font-semibold">Lead Listing</h1>
-        </div>
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" className="text-white hover:text-white/90">
-            <Bell className="h-5 w-5" />
-          </Button>
-          <div className="flex items-center gap-2">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>RM</AvatarFallback>
-            </Avatar>
-            <div className="text-sm">
-              <div>Rajat Mishra</div>
-              <div className="text-xs text-gray-300">USERID: 123456789</div>
+      <header className="bg-[#003087] text-white px-6 py-4 shadow-lg">
+        <div className="container mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <Button 
+              variant="ghost" 
+              className="text-white hover:text-white/90 hover:bg-[#002670] -ml-4"
+            >
+              <span className="mr-2">←</span> Leads
+            </Button>
+            <div className="h-6 w-px bg-white/20" />
+            <h1 className="text-xl font-medium">Lead Listing</h1>
+          </div>
+          <div className="flex items-center gap-6">
+            <Button 
+              variant="ghost" 
+              className="text-white hover:text-white/90 hover:bg-[#002670]"
+            >
+              <Bell className="h-5 w-5" />
+            </Button>
+            <div className="h-6 w-px bg-white/20" />
+            <div className="flex items-center gap-3">
+              <Avatar className="h-9 w-9 border-2 border-white/20">
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>RM</AvatarFallback>
+              </Avatar>
+              <div className="text-sm">
+                <div className="font-medium">Rajat Mishra</div>
+                <div className="text-xs text-gray-300">USERID: 123456789</div>
+              </div>
             </div>
           </div>
         </div>
