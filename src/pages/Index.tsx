@@ -1,12 +1,9 @@
 
 import { useState } from 'react';
-import { Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import LeadCard from '@/components/LeadCard';
-import FilterTabs from '@/components/FilterTabs';
-import FilterControls from '@/components/FilterControls';
 import Pagination from '@/components/Pagination';
+import Header from '@/components/Header';
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -77,44 +74,26 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-[#003087] text-white px-6 py-4 shadow-lg">
-        <div className="container mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <Button 
-              variant="ghost" 
-              className="text-white hover:text-white/90 hover:bg-[#002670] -ml-4"
-            >
-              <span className="mr-2">←</span> Leads
-            </Button>
-            <div className="h-6 w-px bg-white/20" />
-            <h1 className="text-xl font-medium">Lead Listing</h1>
-          </div>
-          <div className="flex items-center gap-6">
-            <Button 
-              variant="ghost" 
-              className="text-white hover:text-white/90 hover:bg-[#002670]"
-            >
-              <Bell className="h-5 w-5" />
-            </Button>
-            <div className="h-6 w-px bg-white/20" />
-            <div className="flex items-center gap-3">
-              <Avatar className="h-9 w-9 border-2 border-white/20">
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>RM</AvatarFallback>
-              </Avatar>
-              <div className="text-sm">
-                <div className="font-medium">Rajat Mishra</div>
-                <div className="text-xs text-gray-300">USERID: 123456789</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header 
+        pageTitle="Lead Listing"
+        notificationCount={2}
+        userName="Rajat Mishra"
+        userId="123456789"
+        filters={[
+          { id: 'all', label: 'All' },
+          { id: 'open', label: 'Open' },
+          { id: 'untouched', label: 'Untouched' },
+          { id: 'failed', label: 'Failed' },
+          { id: 'wip', label: 'WIP' },
+          { id: 'pending', label: 'Pending for Processing' },
+          { id: 'rts', label: 'RTS' },
+          { id: 'issued', label: 'Issued' },
+        ]}
+        activeFilter={activeTab}
+        onFilterChange={setActiveTab}
+      />
 
       <main className="container mx-auto py-6 px-4">
-        <FilterTabs activeTab={activeTab} onTabChange={setActiveTab} />
-        <FilterControls />
-        
         <div className="mt-6 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
           {mockLeads.map((lead) => (
             <LeadCard key={lead.id} lead={lead} />
