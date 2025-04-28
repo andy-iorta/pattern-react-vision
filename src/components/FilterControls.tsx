@@ -15,8 +15,8 @@ const FilterControls = () => {
   const [view, setView] = useState<"self" | "team">("self");
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-4">
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-4 w-full">
         <ToggleGroup 
           type="single" 
           value={view} 
@@ -42,9 +42,9 @@ const FilterControls = () => {
         </ToggleGroup>
 
         {view === "team" && (
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-row gap-4 w-full overflow-x-auto hide-scrollbar">
             <Select>
-              <SelectTrigger className="w-[200px] bg-white">
+              <SelectTrigger className="w-[160px] bg-white">
                 <SelectValue placeholder="Select Hierarchy" />
               </SelectTrigger>
               <SelectContent>
@@ -54,7 +54,7 @@ const FilterControls = () => {
             </Select>
 
             <Select>
-              <SelectTrigger className="w-[200px] bg-white">
+              <SelectTrigger className="w-[160px] bg-white">
                 <SelectValue placeholder="Circle Manager" />
               </SelectTrigger>
               <SelectContent>

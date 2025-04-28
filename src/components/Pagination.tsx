@@ -9,11 +9,11 @@ interface PaginationProps {
 
 const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
   return (
-    <div className="flex items-center justify-between mt-6 pb-6">
-      <div className="text-sm text-gray-600">
+    <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-6 pb-6">
+      <div className="text-sm text-gray-600 w-full md:w-auto text-center md:text-left">
         Showing 8 Out of 244 Companies
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 w-full md:w-auto justify-center">
         <Button
           variant="outline"
           className="border-gray-300"

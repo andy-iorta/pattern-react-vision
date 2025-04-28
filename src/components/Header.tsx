@@ -119,48 +119,7 @@ const Header = ({
               )}
             </div>
 
-            {isMobile ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="text-white hover:bg-[#00264f]">
-                    <MoreVertical className="h-5 w-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 bg-[#003366] text-white border-[#004080]">
-                  <DropdownMenuItem className="hover:bg-[#00264f]">
-                    <Grid2x2 className="h-4 w-4 mr-2" />
-                    <span>Toggle View</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="hover:bg-[#00264f]">
-                    <Languages className="h-4 w-4 mr-2" />
-                    <span>EN</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="hover:bg-[#00264f]">
-                    <Bell className="h-4 w-4 mr-2" />
-                    <span>Notifications</span>
-                    {notificationCount > 0 && (
-                      <span className="ml-auto bg-red-500 text-white text-xs font-bold px-1.5 rounded-full">
-                        {notificationCount}
-                      </span>
-                    )}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="hover:bg-[#00264f]">
-                    <div className="flex items-center gap-2">
-                      <Avatar className="h-6 w-6 border border-white/20">
-                        <AvatarImage src={avatarUrl} />
-                        <AvatarFallback className="bg-[#00264f] text-white text-xs">
-                          {userName.split(' ').map(n => n[0]).join('')}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="text-sm">
-                        <div>{userName}</div>
-                        <div className="text-xs text-gray-300">USERID: {userId}</div>
-                      </div>
-                    </div>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
+            {!isMobile && (
               <div className="flex items-center space-x-4">
                 <Button variant="ghost" className="text-white hover:bg-[#00264f]">
                   <Grid2x2 className="h-5 w-5" />
