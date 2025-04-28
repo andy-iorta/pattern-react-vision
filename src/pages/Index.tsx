@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import LeadCard from '@/components/LeadCard';
 import Pagination from '@/components/Pagination';
 import Header from '@/components/Header';
+import FilterControls from '@/components/FilterControls';
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -94,6 +95,7 @@ const Index = () => {
       />
 
       <main className="container mx-auto py-6 px-4">
+        <FilterControls />
         <div className="mt-6 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
           {mockLeads.map((lead) => (
             <LeadCard key={lead.id} lead={lead} />
