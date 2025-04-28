@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Bell, ChevronLeft, Grid2x2, Languages, MoreVertical } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -44,7 +43,6 @@ const Header = ({
   const isMobile = useIsMobile();
   const [isCardView, setIsCardView] = useState(true);
   
-  // For horizontal scroll of filters
   const [showScrollIndicators, setShowScrollIndicators] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -64,10 +62,8 @@ const Header = ({
       }
     };
     
-    // Initial check
     checkScroll();
     
-    // Add event listener
     const filterContainer = document.getElementById('filter-container');
     if (filterContainer) {
       filterContainer.addEventListener('scroll', checkScroll);
@@ -97,134 +93,120 @@ const Header = ({
   };
 
   return (
-    <header className="bg-[#003366] text-white">
-      {/* Top Bar */}
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
-          {/* Left Section */}
-          <div className="flex items-center space-x-3">
-            <Button 
-              variant="ghost" 
-              className="text-white hover:text-white/90 hover:bg-[#00264f] p-2"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <h1 className="text-xl font-bold hidden md:block">{pageTitle}</h1>
-          </div>
+    <header>
+      <div className="bg-[#033089]">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Button 
+                variant="ghost" 
+                className="text-white hover:text-white/90 hover:bg-[#002670] p-2"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </Button>
+              <h1 className="text-white text-base font-bold hidden md:block">{pageTitle}</h1>
+            </div>
 
-          {/* Center Logo - Only visible on non-mobile */}
-          <div className={`${isMobile ? 'block md:hidden' : 'hidden md:block'} `}>
-            {isMobile ? (
-              <h1 className="text-xl font-bold">{pageTitle}</h1>
-            ) : (
-              <div className="flex justify-center">
+            <div className={`${isMobile ? 'block md:hidden' : 'hidden md:block'}`}>
+              {isMobile ? (
+                <h1 className="text-base font-bold text-white">{pageTitle}</h1>
+              ) : (
                 <img 
-                  src="/salesdrive-logo.svg" 
+                  src="/lovable-uploads/4b33a032-13c3-4d11-9778-ccbeaa9dd8a9.png"
                   alt="SalesDrive Logo" 
-                  className="h-6 w-[106px]"
-                  onError={(e) => {
-                    // Fallback if image can't be loaded
-                    (e.target as HTMLImageElement).style.display = 'none';
-                    (e.target as HTMLImageElement).parentElement!.innerHTML = 
-                      '<span className="text-white font-bold text-lg">SalesDrive</span>';
-                  }}
+                  className="h-6"
                 />
-              </div>
-            )}
-          </div>
+              )}
+            </div>
 
-          {/* Right Section */}
-          {isMobile ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+            {isMobile ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="text-white hover:bg-[#00264f]">
+                    <MoreVertical className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56 bg-[#003366] text-white border-[#004080]">
+                  <DropdownMenuItem className="hover:bg-[#00264f]">
+                    <Grid2x2 className="h-4 w-4 mr-2" />
+                    <span>Toggle View</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="hover:bg-[#00264f]">
+                    <Languages className="h-4 w-4 mr-2" />
+                    <span>EN</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="hover:bg-[#00264f]">
+                    <Bell className="h-4 w-4 mr-2" />
+                    <span>Notifications</span>
+                    {notificationCount > 0 && (
+                      <span className="ml-auto bg-red-500 text-white text-xs font-bold px-1.5 rounded-full">
+                        {notificationCount}
+                      </span>
+                    )}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="hover:bg-[#00264f]">
+                    <div className="flex items-center gap-2">
+                      <Avatar className="h-6 w-6 border border-white/20">
+                        <AvatarImage src={avatarUrl} />
+                        <AvatarFallback className="bg-[#00264f] text-white text-xs">
+                          {userName.split(' ').map(n => n[0]).join('')}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="text-sm">
+                        <div>{userName}</div>
+                        <div className="text-xs text-gray-300">USERID: {userId}</div>
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <div className="flex items-center space-x-4">
                 <Button variant="ghost" className="text-white hover:bg-[#00264f]">
-                  <MoreVertical className="h-5 w-5" />
+                  <Grid2x2 className="h-5 w-5" />
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 bg-[#003366] text-white border-[#004080]">
-                <DropdownMenuItem className="hover:bg-[#00264f]">
-                  <Grid2x2 className="h-4 w-4 mr-2" />
-                  <span>Toggle View</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-[#00264f]">
-                  <Languages className="h-4 w-4 mr-2" />
-                  <span>EN</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-[#00264f]">
-                  <Bell className="h-4 w-4 mr-2" />
-                  <span>Notifications</span>
+                
+                <Button variant="ghost" className="text-white hover:bg-[#00264f]">
+                  <span className="mr-1">EN</span>
+                  <Languages className="h-4 w-4" />
+                </Button>
+                
+                <Button variant="ghost" className="text-white hover:bg-[#00264f] relative">
+                  <Bell className="h-5 w-5" />
                   {notificationCount > 0 && (
-                    <span className="ml-auto bg-red-500 text-white text-xs font-bold px-1.5 rounded-full">
+                    <span className="absolute top-1 right-1 bg-red-500 text-white text-xs font-bold px-1.5 rounded-full">
                       {notificationCount}
                     </span>
                   )}
-                </DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-[#00264f]">
-                  <div className="flex items-center gap-2">
-                    <Avatar className="h-6 w-6 border border-white/20">
-                      <AvatarImage src={avatarUrl} />
-                      <AvatarFallback className="bg-[#00264f] text-white text-xs">
-                        {userName.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="text-sm">
-                      <div>{userName}</div>
-                      <div className="text-xs text-gray-300">USERID: {userId}</div>
-                    </div>
+                </Button>
+                
+                <div className="h-8 w-px bg-white/20" />
+                
+                <div className="flex items-center gap-3">
+                  <Avatar className="h-9 w-9 border-2 border-white/20">
+                    <AvatarImage src={avatarUrl} />
+                    <AvatarFallback className="bg-[#00264f] text-white">
+                      {userName.split(' ').map(n => n[0]).join('')}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="text-sm">
+                    <div className="font-medium">{userName}</div>
+                    <div className="text-xs text-gray-300">USERID: {userId}</div>
                   </div>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" className="text-white hover:bg-[#00264f]">
-                <Grid2x2 className="h-5 w-5" />
-              </Button>
-              
-              <Button variant="ghost" className="text-white hover:bg-[#00264f]">
-                <span className="mr-1">EN</span>
-                <Languages className="h-4 w-4" />
-              </Button>
-              
-              <Button variant="ghost" className="text-white hover:bg-[#00264f] relative">
-                <Bell className="h-5 w-5" />
-                {notificationCount > 0 && (
-                  <span className="absolute top-1 right-1 bg-red-500 text-white text-xs font-bold px-1.5 rounded-full">
-                    {notificationCount}
-                  </span>
-                )}
-              </Button>
-              
-              <div className="h-8 w-px bg-white/20" />
-              
-              <div className="flex items-center gap-3">
-                <Avatar className="h-9 w-9 border-2 border-white/20">
-                  <AvatarImage src={avatarUrl} />
-                  <AvatarFallback className="bg-[#00264f] text-white">
-                    {userName.split(' ').map(n => n[0]).join('')}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="text-sm">
-                  <div className="font-medium">{userName}</div>
-                  <div className="text-xs text-gray-300">USERID: {userId}</div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
       
-      {/* Second Bar - Page Title and Filters */}
-      <div className="border-t border-white/10">
+      <div className="bg-[#1246AD] border-t border-white/10">
         <div className="container mx-auto px-4 py-3">
-          {/* Page Title - Only visible on non-mobile */}
           <div className="hidden md:block mb-3">
-            <h2 className="text-2xl font-bold">{pageTitle}</h2>
+            <h2 className="text-2xl font-normal text-white">{pageTitle}</h2>
           </div>
           
-          {/* Filters and View Toggle */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0">
-            {/* Filters with horizontal scroll */}
             <div className="relative w-full md:w-auto">
               <div 
                 className="flex overflow-x-auto hide-scrollbar relative py-1"
@@ -247,7 +229,6 @@ const Header = ({
                 </div>
               </div>
               
-              {/* Scroll indicators */}
               {showScrollIndicators && (
                 <>
                   {canScrollLeft && (
@@ -274,11 +255,10 @@ const Header = ({
               )}
             </div>
             
-            {/* View Toggle Button - Only visible on non-mobile */}
             <div className="hidden md:block">
               <Button
                 variant="outline"
-                className="border-white/70 text-white hover:bg-white/10"
+                className="border-white/70 text-white hover:bg-white/10 bg-transparent"
                 onClick={() => setIsCardView(!isCardView)}
               >
                 <Grid2x2 className="h-4 w-4 mr-2" />
@@ -289,7 +269,6 @@ const Header = ({
         </div>
       </div>
       
-      {/* Add CSS for hiding scrollbar but maintaining functionality */}
       <style>
         {`
         .hide-scrollbar::-webkit-scrollbar {
