@@ -290,7 +290,8 @@ const Header = ({
       </div>
       
       {/* Add CSS for hiding scrollbar but maintaining functionality */}
-      <style jsx>{`
+      <style>
+        {`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }
@@ -298,7 +299,8 @@ const Header = ({
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
-      `}</style>
+        `}
+      </style>
     </header>
   );
 };
